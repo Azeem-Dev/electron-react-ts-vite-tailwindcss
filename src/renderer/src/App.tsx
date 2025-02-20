@@ -1,4 +1,4 @@
-import { Content, RootLayout, Sidebar ,DraggableTopBar} from "@/components"
+import { Content, RootLayout, Sidebar } from "@/components"
 
 
 const App = (): JSX.Element => {
@@ -6,7 +6,6 @@ const App = (): JSX.Element => {
 
   return (
     <>
-    <DraggableTopBar />
     <RootLayout>
       <Sidebar className="p-2">
         Sidebar
