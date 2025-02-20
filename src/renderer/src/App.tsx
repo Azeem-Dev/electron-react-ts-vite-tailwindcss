@@ -3,7 +3,6 @@ import React from 'react'
 
 const App = (): JSX.Element => {
   // const ipcHandle = (): void => window.electron.ipcRenderer.send('ping')
-
   return (
     <React.Fragment>
       <RootLayout>

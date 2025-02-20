@@ -1,6 +1,6 @@
-import { cn } from '@renderer/utils'
+import { cn, formatDateFromMs } from '@renderer/utils'
 import { NoteInfo } from '@shared/models'
-import { ComponentProps } from 'react'
+import { ComponentProps, useEffect, useState } from 'react'
 
 export type NotePreviewProps = NoteInfo & {
   isActive?: boolean
@@ -12,6 +12,17 @@ export const NotePreview = ({
   className,
   ...props
 }: NotePreviewProps): JSX.Element => {
+  const [formattedDate, setFormattedDate] = useState<string>('')
+
+  useEffect(() => {
+    const fetchFormattedDate = async (): Promise<void> => {
+      const date = await formatDateFromMs(lastEditTime)
+      setFormattedDate(date)
+    }
+
+    fetchFormattedDate()
+  }, [lastEditTime])
+
   return (
     <div
       className={cn(
@@ -25,7 +36,7 @@ export const NotePreview = ({
       {...props}
     >
       <h3 className="mb-1 font-bold truncate">{title}</h3>
-      <span className="inline-block w-full mb-2 text-xs font-light text-left">{lastEditTime}</span>
+      <span className="inline-block w-full mb-2 text-xs font-light text-left">{formattedDate}</span>
     </div>
   )
 }

@@ -3,6 +3,8 @@ import { ElectronAPI } from '@electron-toolkit/preload'
 declare global {
   interface Window {
     electron: ElectronAPI
-    context: object
+    context: {
+      getLocale: () => Promise<string>
+    }
   }
 }

@@ -66,6 +66,11 @@ app.whenReady().then(() => {
   // IPC test
   ipcMain.on('ping', () => console.log('pong'))
 
+  //NOTE: Handle Methods when sandbox is set to true and we can't directly expose the system apis
+  ipcMain.handle('get-locale', () => {
+    return navigator.language
+  })
+
   createWindow()
 
   app.on('activate', function () {
