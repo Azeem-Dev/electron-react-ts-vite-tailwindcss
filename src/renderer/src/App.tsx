@@ -1,20 +1,18 @@
-import { Content, RootLayout, Sidebar } from "@/components"
-
+import { ActionButtonsRow, Content, RootLayout, Sidebar } from '@/components'
+import React from 'react'
 
 const App = (): JSX.Element => {
   // const ipcHandle = (): void => window.electron.ipcRenderer.send('ping')
 
   return (
-    <>
-    <RootLayout>
-      <Sidebar className="p-2">
-        Sidebar
-      </Sidebar>
-      <Content className="border-l border-l-white/20 bg-zinc-900/50 ">
-      Content
-      </Content>
-    </RootLayout>
-    </>
+    <React.Fragment>
+      <RootLayout>
+        <Sidebar className="p-2">
+          <ActionButtonsRow className="flex justify-between mt-1" />
+        </Sidebar>
+        <Content className="border-l border-l-white/20 bg-zinc-900/50 ">Content</Content>
+      </RootLayout>
+    </React.Fragment>
   )
 }
 
