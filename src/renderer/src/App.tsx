@@ -1,10 +1,21 @@
+import { Content, RootLayout, Sidebar ,DraggableTopBar} from "@/components"
 
 
-function App(): JSX.Element {
+const App = (): JSX.Element => {
   // const ipcHandle = (): void => window.electron.ipcRenderer.send('ping')
 
   return (
-    <div className="p-4 cursor hover:text-[20px]">Hello, Tailwind CSS!</div>
+    <>
+    <DraggableTopBar />
+    <RootLayout>
+      <Sidebar className="p-2">
+        Sidebar
+      </Sidebar>
+      <Content className="border-l border-l-white/20 bg-zinc-900/50 ">
+      Content
+      </Content>
+    </RootLayout>
+    </>
   )
 }
 
