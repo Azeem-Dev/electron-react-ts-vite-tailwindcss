@@ -10,10 +10,21 @@ export default defineConfig({
         '@lib': resolve('src/main/lib'),
         '@shared': resolve('src/shared')
       }
+    },
+    build: {
+      outDir: 'out/main'
     }
   },
   preload: {
-    plugins: [externalizeDepsPlugin()]
+    plugins: [externalizeDepsPlugin()],
+    build: {
+      outDir: 'out/preload'
+    },
+    resolve: {
+      alias: {
+        '@shared': resolve('src/shared')
+      }
+    }
   },
   renderer: {
     root: resolve('src/renderer'),
