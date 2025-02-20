@@ -4,19 +4,32 @@ import { electronApp, optimizer, is } from '@electron-toolkit/utils'
 import icon from '../../resources/icon.png?asset'
 
 function createWindow(): void {
-  // Create the browser window.
-  const mainWindow = new BrowserWindow({
+  let defaultWindowSettings: object = {
     width: 900,
     height: 670,
     show: false,
     autoHideMenuBar: true,
     ...(process.platform === 'linux' ? { icon } : {}),
+    center: true,
+    title: 'NoteMark',
     webPreferences: {
       preload: join(__dirname, '../preload/index.js'),
       sandbox: true,
       contextIsolation: true
     }
-  })
+  }
+
+  if (process.platform === 'darwin') {
+    defaultWindowSettings = {
+      ...defaultWindowSettings,
+      frame: false,
+      titleBarStyle: 'hidden',
+      trafficLightPosition: { x: 15, y: 10 },
+      vibrancy: 'under-window',
+      visualEffectState: 'active'
+    }
+  }
+  const mainWindow = new BrowserWindow(defaultWindowSettings)
 
   mainWindow.on('ready-to-show', () => {
     mainWindow.show()

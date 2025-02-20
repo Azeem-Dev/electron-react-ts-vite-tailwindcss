@@ -1,1 +1,19 @@
-@import "tailwindcss";
+@import 'tailwindcss';
+
+@layer base {
+  #root {
+    @apply h-full w-full;
+  }
+  html,
+  body {
+    @apply h-full w-full;
+
+    @apply select-none;
+
+    @apply bg-gray-800;
+
+    @apply font-mono antialiased text-white;
+
+    @apply overflow-hidden;
+  }
+}
