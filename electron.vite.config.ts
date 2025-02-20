@@ -27,7 +27,7 @@ export default defineConfig({
         '@components': resolve('src/renderer/src/components'),
         '@mocks': resolve('src/renderer/src/mocks'),
         '@utils': resolve('src/renderer/src/utils'),
-        '@':resolve('src/renderer/src')
+        '@': resolve('src/renderer/src')
       }
     },
     plugins: [react()],
