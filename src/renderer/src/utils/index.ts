@@ -2,7 +2,7 @@ import clsx, { ClassValue } from 'clsx'
 import { twMerge } from 'tailwind-merge'
 
 export const formatDateFromMs = async (ms: number): Promise<string> => {
-  const locale = await window?.context?.getLocale()
+  const locale = window?.context?.locale
   console.log(locale)
   const formatter = new Intl.DateTimeFormat(undefined, {
     dateStyle: 'short',

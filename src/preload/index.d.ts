@@ -4,7 +4,7 @@ declare global {
   interface Window {
     electron: ElectronAPI
     context: {
-      getLocale: () => Promise<string>
+      locale: string
     }
   }
 }
