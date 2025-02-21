@@ -16,7 +16,9 @@ export type UseNotesListReturn = {
   selectedNoteIndex: number | null
   handleNoteSelect: (index: number) => () => Promise<void>
 };
-
+export type NotePreviewListProps = ComponentProps<'ul'> & {
+  onSelect?: () => void
+}
 
 export type NotePreviewProps = NoteInfo & {
   isActive?: boolean

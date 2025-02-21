@@ -1,10 +1,14 @@
-import { ComponentProps } from 'react'
 import { NotePreview } from './NotePreview'
 import { twMerge } from 'tailwind-merge'
 import { useNotesList } from '@/hooks/useNotesList'
+import { NotePreviewListProps } from '@shared/models'
 
-export const NotePreviewList = ({ className, ...props }: ComponentProps<'ul'>): JSX.Element => {
-  const { notes, selectedNoteIndex, handleNoteSelect } = useNotesList({})
+export const NotePreviewList = ({
+  className,
+  onSelect,
+  ...props
+}: NotePreviewListProps): JSX.Element => {
+  const { notes, selectedNoteIndex, handleNoteSelect } = useNotesList({onSelect})
   if (notes.length == 0) {
     return (
       <ul className={twMerge('text-center pt-4', className)} {...props}>
