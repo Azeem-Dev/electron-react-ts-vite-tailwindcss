@@ -23,3 +23,5 @@ export type NotePreviewListProps = ComponentProps<'ul'> & {
 export type NotePreviewProps = NoteInfo & {
   isActive?: boolean
 } & ComponentProps<'div'>
+
+export type SelectedNoteReturn = { content: string; title: string; lastEditTime: number }

@@ -1,14 +1,8 @@
 import { selectedNoteAtom } from '@renderer/store'
+import { SelectedNoteReturn } from '@shared/models'
 import { useAtomValue } from 'jotai'
 
-export const useMarkdownEditor = (): {
-  content: string
-  title: string
-  lastEditTime: number
-} | null => {
+export const useMarkdownEditor = (): SelectedNoteReturn | null => {
   const selectedNote = useAtomValue(selectedNoteAtom)
-
-  return {
-    selectedNote
-  }
+  return selectedNote
 }
