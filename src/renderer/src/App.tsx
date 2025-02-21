@@ -13,7 +13,7 @@ const App = (): JSX.Element => {
   const contentContainerRef = useRef<HTMLDivElement>(null)
 
   const resetScroll = (): void => {
-    contentContainerRef.current?.scrollTo(0,0)
+    contentContainerRef.current?.scrollTo(0, 0)
   }
 
   return (
