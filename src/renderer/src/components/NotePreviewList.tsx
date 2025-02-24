@@ -8,7 +8,7 @@ export const NotePreviewList = ({
   onSelect,
   ...props
 }: NotePreviewListProps): JSX.Element => {
-  const { notes, selectedNoteIndex, handleNoteSelect } = useNotesList({onSelect})
+  const { notes, selectedNoteIndex, handleNoteSelect } = useNotesList({ onSelect })
   if (notes.length == 0) {
     return (
       <ul className={twMerge('text-center pt-4', className)} {...props}>
