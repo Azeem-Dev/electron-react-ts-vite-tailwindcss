@@ -3,7 +3,13 @@ import { join } from 'path'
 import { electronApp, optimizer, is } from '@electron-toolkit/utils'
 import icon from '../../resources/icon.png?asset'
 import { createNote, deleteNote, getNotes, readNote, writeNote } from './lib'
-import { GetNotesType, ReadNoteType, WriteNoteType, CreateNoteType,DeleteNoteType } from '@shared/types'
+import {
+  GetNotesType,
+  ReadNoteType,
+  WriteNoteType,
+  CreateNoteType,
+  DeleteNoteType
+} from '@shared/types'
 
 function createWindow(): void {
   let defaultWindowSettings: object = {

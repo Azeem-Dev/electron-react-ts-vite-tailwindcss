@@ -15,8 +15,8 @@ export const useNotesList = ({ onSelect }: UseNotesListProps): UseNotesListRetur
   };
 
   return {
-    notes,
+    notes: notes ?? [],  
     selectedNoteIndex,
     handleNoteSelect,
-  }
+  };
 };
