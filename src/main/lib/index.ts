@@ -1,6 +1,6 @@
 import { isEmpty } from 'lodash'
 import { NoteInfo } from '@shared/models'
-import { appDirectoryPath, fileEncoding } from '@shared/constants'
+import { appDirectoryPath, fileEncoding, welcomeNoteFileName } from '@shared/constants'
 import { ensureDir, readdir, readFile, remove, stat, writeFile, writeFileSync } from 'fs-extra'
 import { cwd } from 'process'
 import {
@@ -33,9 +33,9 @@ export const getNotes: GetNotesType = async () => {
 
     const content = await readFile(welcomeNoteFile, { encoding: fileEncoding })
 
-    await writeFile(`${rootDir}\\Welcome.md`, content, { encoding: fileEncoding })
+    await writeFile(`${rootDir}\\${welcomeNoteFileName}`, content, { encoding: fileEncoding })
 
-    notes.push('Welcome.md')
+    notes.push(welcomeNoteFileName)
   }
 
   return Promise.all(notes.map(getNoteInfoFromFileName))
