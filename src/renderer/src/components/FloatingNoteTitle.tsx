@@ -7,9 +7,11 @@ export const FloatingNoteTitle = ({
   className,
   ...props
 }: ComponentProps<'div'>): JSX.Element | null => {
-  const selectedNote = useAtomValue(selectedNoteAtom)
+  let selectedNote = useAtomValue(selectedNoteAtom)
 
   if (!selectedNote) return null
+  selectedNote = { ...selectedNote, title: selectedNote.title.replace('.md', '') }
+
   return (
     <div className={twMerge('flex justify-center', className)} {...props}>
       <span className='text-gray-400'>{selectedNote.title}</span>
