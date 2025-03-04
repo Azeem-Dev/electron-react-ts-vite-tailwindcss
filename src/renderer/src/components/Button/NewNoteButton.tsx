@@ -6,8 +6,8 @@ import { AiFillFileAdd } from 'react-icons/ai'
 export const NewNoteButton = ({ ...props }: ActionButtonProps): JSX.Element => {
   const createEmptyNote = useSetAtom(createEmptyNoteAtom)
 
-  const handleCreation = ():void => {
-    createEmptyNote()
+  const handleCreation = async ():Promise<void> => {
+    await createEmptyNote()
   }
   return (
     <ActionButton onClick={handleCreation} {...props} >
