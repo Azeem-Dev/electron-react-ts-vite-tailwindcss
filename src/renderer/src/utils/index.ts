@@ -5,8 +5,7 @@ export const formatDateFromMs = async (ms: number): Promise<string> => {
   const locale = window?.context?.locale
   const formatter = new Intl.DateTimeFormat(locale, {
     dateStyle: 'short',
-    timeStyle: 'short',
-    timeZone: 'UTC'
+    timeStyle: 'short'
   })
   return formatter.format(ms)
 }
