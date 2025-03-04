@@ -55,17 +55,24 @@ export const createEmptyNoteAtom = atom(null, async (get, set) => {
   set(selectedNoteIndexAtom, 0)
 })
 
-export const deleteNotAtom = atom(null, (get, set) => {
+export const deleteNotAtom = atom(null, async (get, set) => {
   const notes = get(notesAtom)
   if (!notes) return null
   const selectedNote = get(selectedNoteAtom)
 
   if (!selectedNote) return
-  set(
-    notesAtom,
-    notes.filter((note) => note.title != selectedNote.title)
-  )
-  set(selectedNoteIndexAtom, null)
+
+  const isNoteDeleted = await window.context.deleteNote(selectedNote.title)
+
+  if (isNoteDeleted) {
+    set(
+      notesAtom,
+      notes.filter((note) => note.title != selectedNote.title)
+    )
+    set(selectedNoteIndexAtom, null)
+  }
+
+
 })
 
 export const saveNoteAtom = atom(null, async (get, set, newContent: NoteContent) => {
