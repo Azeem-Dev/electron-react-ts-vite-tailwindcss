@@ -1,8 +1,8 @@
 import { NoteInfo } from '@shared/models'
 import { appDirectoryPath, fileEncoding } from '@shared/constants'
-import { ensureDir, readdir, readFile, stat } from 'fs-extra'
+import { ensureDir, readdir, readFile, stat, writeFile } from 'fs-extra'
 import { cwd } from 'process'
-import { GetNotesType, ReadNoteType } from '@shared/types'
+import { GetNotesType, ReadNoteType, WriteNoteType } from '@shared/types'
 
 export const getRooDir = (): string => {
   return `${cwd()}${appDirectoryPath}`
@@ -29,7 +29,14 @@ export const getNoteInfoFromFileName = async (filename: string): Promise<NoteInf
   }
 }
 
-export const readNote: ReadNoteType = async (title): Promise<string> => {
+export const readNote: ReadNoteType = async (filename): Promise<string> => {
   const rootDir = getRooDir()
-  return readFile(`${rootDir}/${title}`, { encoding: fileEncoding })
+  return readFile(`${rootDir}/${filename}`, { encoding: fileEncoding })
+}
+
+export const writeNote: WriteNoteType = async (filename, content) => {
+  const rootDir = getRooDir()
+  console.log(`Writing note ${filename}`)
+
+  return writeFile(`${rootDir}/${filename}`, content, { encoding: fileEncoding })
 }
