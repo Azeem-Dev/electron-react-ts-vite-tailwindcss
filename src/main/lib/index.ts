@@ -1,10 +1,18 @@
+import { isEmpty } from 'lodash'
 import { NoteInfo } from '@shared/models'
 import { appDirectoryPath, fileEncoding } from '@shared/constants'
 import { ensureDir, readdir, readFile, remove, stat, writeFile, writeFileSync } from 'fs-extra'
 import { cwd } from 'process'
-import { GetNotesType, ReadNoteType, WriteNoteType, CreateNoteType,DeleteNoteType } from '@shared/types'
+import {
+  GetNotesType,
+  ReadNoteType,
+  WriteNoteType,
+  CreateNoteType,
+  DeleteNoteType
+} from '@shared/types'
 import { dialog } from 'electron'
 import path from 'path'
+import welcomeNoteFile from '../../../resources/welcomeNote.md?asset'
 
 export const getRooDir = (): string => {
   return `${cwd()}${appDirectoryPath}`
@@ -19,6 +27,16 @@ export const getNotes: GetNotesType = async () => {
     withFileTypes: false
   })
   const notes = notesFileNames.filter((fileName) => fileName.endsWith('.md'))
+
+  if (isEmpty(notes)) {
+    console.info('No notes found, creating a welcome note')
+
+    const content = await readFile(welcomeNoteFile, { encoding: fileEncoding })
+
+    await writeFile(`${rootDir}\\Welcome.md`, content, { encoding: fileEncoding })
+
+    notes.push('Welcome.md')
+  }
 
   return Promise.all(notes.map(getNoteInfoFromFileName))
 }
@@ -90,7 +108,7 @@ export const deleteNote: DeleteNoteType = async (fileName) => {
     message: `Are you sure you want to delete ${fileName}`,
     buttons: ['Delete', 'Cancel'],
     defaultId: 1,
-    cancelId: 1,
+    cancelId: 1
   })
 
   if (response == 1) {
